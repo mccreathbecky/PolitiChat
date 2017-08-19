@@ -512,7 +512,11 @@
 		
 		for($count=0; $count < 3; $count++, $policy_cnt++)
 		{
-			$formatted_policies .= "\\n"."- ".ucwords($policies[$count]->policy->name, " ");	
+			//this checks for " " and replaces it with ' ' so that the json string formats correctly
+			$policy = ucwords($policies[$count]->policy->name, " ");
+			$policy = str_replace("\"","'",$policy);
+			
+			$formatted_policies .= "\\n"."- ".$policy;	
 			
 		}
 		
@@ -520,6 +524,10 @@
 		
 		for($count = 3; $count > 0; $count--, $policy_cnt++)
 		{
+			//this checks for " " and replaces it with ' ' so that the json string formats correctly
+			$policy = ucwords($policies[$count]->policy->name, " ");
+			$policy = str_replace("\"","'",$policy);
+			
 			$formatted_policies.= "\\n"."- ".ucwords($policies[$policy_amt - $count]->policy->name, " ");		
 		}
 		
